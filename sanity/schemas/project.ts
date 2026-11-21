@@ -5,7 +5,7 @@ export const project = defineType({
   fields: [
     defineField({name:'title', title:'Project title', type:'string', validation:r=>r.required()}),
     defineField({name:'slug', title:'URL slug', type:'slug', options:{source:'title', maxLength:96}, validation:r=>r.required()}),
-    defineField({name:'category', title:'Category', type:'string', options:{list:[{title:'Interior Design',value:'Interior Design'},{title:'Architecture',value:'Architecture'},{title:'3D Visualization',value:'3D Visualization'},{title:'Furniture Design',value:'Furniture Design'},{title:'Commercial Design',value:'Commercial Design'}]}, validation:r=>r.required()}),
+    defineField({name:'category', title:'Category', type:'string', options:{list:[{title:'Interior Design',value:'Interior Design'},{title:'Architecture',value:'Architecture'},{title:'3D Visualization',value:'3D Visualization'},{title:'Furniture Design',value:'Furniture Design'},{title:'Commercial Design',value:'Commercial Design'},{title:'Event & Booth Designs',value:'Event & Booth Designs'}]}, validation:r=>r.required()}),
     defineField({name:'year', title:'Year', type:'string'}),
     defineField({name:'location', title:'Location', type:'string'}),
     defineField({name:'summary', title:'Short introduction', type:'text', rows:3, validation:r=>r.required()}),
