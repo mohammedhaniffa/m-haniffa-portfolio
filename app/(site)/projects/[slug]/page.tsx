@@ -1,0 +1,6 @@
+import {notFound} from 'next/navigation';
+import {PortableText} from 'next-sanity';
+import {client,sanityConfigured,projectsQuery} from '@/lib/sanity';
+import type {Project} from '@/lib/types';
+export const revalidate=60;
+export default async function ProjectPage({params}:{params:Promise<{slug:string}>}){const {slug}=await params;if(!sanityConfigured)notFound();let projects:Project[]=[];try{projects=await client.fetch(projectsQuery)}catch{notFound()}const p=projects.find(x=>x.slug===slug);if(!p)notFound();return <main className="wrap detail-page"><a className="text-link" href="/projects">← All projects</a><div className="eyebrow detail-eyebrow">{p.category}{p.year?` / ${p.year}`:''}{p.location?` / ${p.location}`:''}</div><h1>{p.title}</h1><p className="detail-summary">{p.summary}</p>{p.coverImage?.asset?.url&&<img className="detail-cover" src={p.coverImage.asset.url} alt={p.title}/>}{p.description?.length ? <div className="detail-description"><PortableText value={p.description}/></div> : null}<div className="detail-gallery">{p.gallery?.map((im,i)=>im.asset?.url?<img key={i} src={im.asset.url} alt={`${p.title} view ${i+1}`}/>:null)}</div><div className="detail-end"><a className="text-link" href="/#contact">Discuss a project ↗</a></div></main>}
