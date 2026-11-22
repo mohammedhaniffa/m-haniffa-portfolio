@@ -233,3 +233,22 @@ nav a:hover,.text-link:hover{color:var(--accent)}
 @media(prefers-reduced-motion:reduce){
  .software-track{animation:none}
 }
+
+
+/* FORCE SOFTWARE SECTION TO KEEP ITS COLOURS IN LIGHT AND DARK MODE */
+
+.software-section {
+  background-color: #282820 !important;
+  color: #f5f2ea !important;
+  color-scheme: light !important;
+  forced-color-adjust: none;
+}
+
+.software-section .software-item img {
+  filter: brightness(0) invert(1) !important;
+  -webkit-filter: brightness(0) invert(1) !important;
+  opacity: 1 !important;
+  forced-color-adjust: none;
+  mix-blend-mode: normal !important;
+}
+
