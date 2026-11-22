@@ -167,7 +167,9 @@ nav a:hover,.text-link:hover{color:var(--accent)}
  height:65px;
  object-fit:contain;
  object-position:center;
- filter:brightness(0) invert(1);
+ filter:brightness(0) invert(1) !important;
+ -webkit-filter:brightness(0) invert(1) !important;
+ opacity:1 !important;
 }
 .software-track:hover{animation-play-state:paused}
 
@@ -219,7 +221,12 @@ nav a:hover,.text-link:hover{color:var(--accent)}
  .software-track{animation-duration:35s}
  .software-group{gap:35px;padding-right:35px}
  .software-item{width:100px;height:75px;flex:0 0 100px}
- .software-item img{height:55px}
+ .software-item img{
+  height:55px;
+  filter:brightness(0) invert(1) !important;
+  -webkit-filter:brightness(0) invert(1) !important;
+  opacity:1 !important;
+ }
 }
 
 /* ACCESSIBILITY */
