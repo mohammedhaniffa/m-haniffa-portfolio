@@ -117,6 +117,7 @@ nav a:hover,.text-link:hover{color:var(--accent)}
 .software-section{
  background:#282820;
  color:#f5f2ea;
+ color-scheme:light;
  padding:85px 0 75px;
  overflow:hidden;
 }
@@ -167,9 +168,11 @@ nav a:hover,.text-link:hover{color:var(--accent)}
  height:65px;
  object-fit:contain;
  object-position:center;
- filter:brightness(0) invert(1) !important;
- -webkit-filter:brightness(0) invert(1) !important;
+ filter:none !important;
+ -webkit-filter:none !important;
+ mix-blend-mode:normal !important;
  opacity:1 !important;
+ forced-color-adjust:none;
 }
 .software-track:hover{animation-play-state:paused}
 
@@ -223,9 +226,11 @@ nav a:hover,.text-link:hover{color:var(--accent)}
  .software-item{width:100px;height:75px;flex:0 0 100px}
  .software-item img{
   height:55px;
-  filter:brightness(0) invert(1) !important;
-  -webkit-filter:brightness(0) invert(1) !important;
+  filter:none !important;
+  -webkit-filter:none !important;
+  mix-blend-mode:normal !important;
   opacity:1 !important;
+  forced-color-adjust:none;
  }
 }
 
@@ -233,22 +238,3 @@ nav a:hover,.text-link:hover{color:var(--accent)}
 @media(prefers-reduced-motion:reduce){
  .software-track{animation:none}
 }
-
-
-/* FORCE SOFTWARE SECTION TO KEEP ITS COLOURS IN LIGHT AND DARK MODE */
-
-.software-section {
-  background-color: #282820 !important;
-  color: #f5f2ea !important;
-  color-scheme: light !important;
-  forced-color-adjust: none;
-}
-
-.software-section .software-item img {
-  filter: brightness(0) invert(1) !important;
-  -webkit-filter: brightness(0) invert(1) !important;
-  opacity: 1 !important;
-  forced-color-adjust: none;
-  mix-blend-mode: normal !important;
-}
-
