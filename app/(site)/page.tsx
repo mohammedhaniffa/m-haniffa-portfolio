@@ -75,7 +75,7 @@ export default async function Home(){
       <div className="section-heading">
         <div>
           <div className="eyebrow">01 / SELECTED WORK</div>
-          <h2>Projects & explorations</h2>
+          <h2>Projects & Explorations</h2>
         </div>
         <span className="muted">A selection of design work</span>
       </div>
