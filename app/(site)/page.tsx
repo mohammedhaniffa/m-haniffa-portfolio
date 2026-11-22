@@ -62,12 +62,109 @@ export default async function Home(){
         </a>
       </div>
 
+      {/* ARCHITECTURAL LINE-ART BANNER */}
       <div className="hero-art">
-        <div className="hero-art-note">DESIGN / DETAIL / ATMOSPHERE</div>
-        <div className="hero-art-shape shape-one"/>
-        <div className="hero-art-shape shape-two"/>
-        <div className="hero-art-shape shape-three"/>
-        <span className="hero-art-caption">A considered approach to every space.</span>
+
+        <div className="hero-art-note">
+          INTERIOR ARCHITECTURE / DESIGN STUDY 01
+        </div>
+
+        <svg
+          className="architecture-drawing"
+          viewBox="0 0 1400 420"
+          preserveAspectRatio="xMidYMid meet"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          aria-hidden="true"
+        >
+          <defs>
+            <linearGradient id="architectureFade" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stopColor="#a58b68" stopOpacity=".05"/>
+              <stop offset="50%" stopColor="#897c68" stopOpacity=".75"/>
+              <stop offset="100%" stopColor="#a58b68" stopOpacity=".12"/>
+            </linearGradient>
+          </defs>
+
+          {/* Architectural wall elevations */}
+          <g
+            stroke="#897c68"
+            strokeWidth="1"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            opacity=".58"
+          >
+            <path d="M430 350 V65 H1320 V350"/>
+            <path d="M455 350 V85 H1295 V350"/>
+            <path d="M470 105 H1280"/>
+            <path d="M470 315 H1280"/>
+
+            {/* Wall panels */}
+            <path d="M490 110 V310 M650 110 V310 M810 110 V310"/>
+            <path d="M490 125 H810 M490 290 H810"/>
+
+            {/* Large architectural windows */}
+            <path d="M850 110 V310 H1190 V110 Z"/>
+            <path d="M1015 110 V310"/>
+            <path d="M850 210 H1190"/>
+            <path d="M865 125 H1000 M1030 125 H1175"/>
+
+            {/* Ceiling and floor details */}
+            <path d="M400 65 H1350 M380 350 H1360"/>
+            <path d="M350 370 H1370" strokeDasharray="5 5"/>
+            <path d="M430 45 H1320" strokeDasharray="3 5"/>
+
+            {/* Sofa */}
+            <path d="M700 270 Q700 245 730 245 H1080 Q1110 245 1110 270 V320 H700 Z"/>
+            <path d="M715 270 H1095 V315 H715 Z"/>
+            <path d="M730 245 V220 Q730 205 750 205 H1050 Q1080 205 1080 230 V245"/>
+            <path d="M850 245 V315 M970 245 V315"/>
+            <path d="M720 320 L710 350 M1090 320 L1100 350"/>
+
+            {/* Coffee table */}
+            <path d="M770 330 H1060 L1035 345 H790 Z"/>
+            <path d="M810 345 L800 365 M1020 345 L1030 365"/>
+
+            {/* Pendant lighting */}
+            <path d="M900 65 V130 M1020 65 V130"/>
+            <ellipse cx="900" cy="145" rx="28" ry="9"/>
+            <ellipse cx="1020" cy="145" rx="28" ry="9"/>
+
+            {/* Indoor tree */}
+            <path d="M580 300 V220 M580 245 L550 210 M580 260 L610 220"/>
+            <path d="M580 210 Q540 190 550 165 Q570 150 580 180 Q600 145 620 165 Q630 190 600 210"/>
+            <path d="M555 300 H605 L595 320 H565 Z"/>
+
+            {/* Architectural dimensions */}
+            <path d="M430 35 V390 M1320 35 V390" strokeDasharray="3 5" opacity=".5"/>
+            <path d="M420 55 H440 M420 350 H440 M1310 55 H1330 M1310 350 H1330"/>
+          </g>
+
+          {/* Fine construction guide lines */}
+          <g stroke="url(#architectureFade)" strokeWidth=".8">
+            <path d="M430 390 H1320"/>
+            <path d="M430 385 V395 M1320 385 V395"/>
+            <path d="M650 110 V65 M810 110 V65 M1015 110 V65"/>
+            <path d="M680 350 V375 M1150 350 V375"/>
+            <path d="M350 350 L430 350 M1320 350 L1380 350"/>
+          </g>
+
+          {/* Subtle dimension markers */}
+          <g
+            fill="#897c68"
+            fontSize="10"
+            fontFamily="Arial, sans-serif"
+            opacity=".7"
+          >
+            <text x="415" y="200" transform="rotate(-90 415 200)">ELEVATION 01</text>
+            <text x="820" y="390">INTERIOR STUDY</text>
+            <text x="1300" y="390" textAnchor="end">01 / 01</text>
+          </g>
+        </svg>
+
+        <div className="hero-art-caption">
+          A considered approach to every space.
+        </div>
+
       </div>
     </section>
 
