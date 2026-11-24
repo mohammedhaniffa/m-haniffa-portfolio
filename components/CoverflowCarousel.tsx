@@ -1,4 +1,4 @@
-
+```tsx
 'use client';
 
 import {useEffect, useState} from 'react';
@@ -18,14 +18,12 @@ export default function CoverflowCarousel({
   const [activeIndex, setActiveIndex] = useState(0);
   const [paused, setPaused] = useState(false);
 
-  // Keep the active slide within range if the project list changes.
   useEffect(() => {
     setActiveIndex((current) =>
       slides.length ? current % slides.length : 0,
     );
   }, [slides.length]);
 
-  // Automatic horizontal movement.
   useEffect(() => {
     if (paused || slides.length < 2) return;
 
@@ -150,7 +148,7 @@ export default function CoverflowCarousel({
             aria-label="Previous project"
             disabled={slides.length < 2}
           >
-            ←
+            <span className="coverflow-arrow">←</span>
           </button>
 
           <button
@@ -159,10 +157,11 @@ export default function CoverflowCarousel({
             aria-label="Next project"
             disabled={slides.length < 2}
           >
-            →
+            <span className="coverflow-arrow">→</span>
           </button>
         </div>
       </div>
     </div>
   );
 }
+```
