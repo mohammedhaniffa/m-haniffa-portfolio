@@ -12,18 +12,22 @@ export default function CoverflowCarousel({
   projects: Project[];
 }) {
   const slides = projects.filter((project) =>
-    Boolean(project.coverImage?.asset?.url),
+    Boolean(project.coverImage?.asset?.url && project.slug),
   );
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [paused, setPaused] = useState(false);
 
+  // Keep the active slide within range if the project list changes.
+  useEffect(() => {
+    setActiveIndex((current) =>
+      slides.length ? current % slides.length : 0,
+    );
+  }, [slides.length]);
+
+  // Automatic horizontal movement.
   useEffect(() => {
     if (paused || slides.length < 2) return;
-
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      return;
-    }
 
     const timer = window.setInterval(() => {
       setActiveIndex((current) => (current + 1) % slides.length);
@@ -43,12 +47,17 @@ export default function CoverflowCarousel({
 
   const move = (direction: number) => {
     setActiveIndex(
-      (current) => (current + direction + slides.length) % slides.length,
+      (current) =>
+        (current + direction + slides.length) % slides.length,
     );
   };
 
   const handleBlur = (event: FocusEvent<HTMLDivElement>) => {
-    if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+    if (
+      !event.currentTarget.contains(
+        event.relatedTarget as Node | null,
+      )
+    ) {
       setPaused(false);
     }
   };
@@ -64,7 +73,8 @@ export default function CoverflowCarousel({
     >
       <div className="coverflow-stage">
         {slides.map((project, index) => {
-          let offset = (index - activeIndex + slides.length) % slides.length;
+          let offset =
+            (index - activeIndex + slides.length) % slides.length;
 
           if (offset > slides.length / 2) {
             offset -= slides.length;
@@ -77,16 +87,18 @@ export default function CoverflowCarousel({
           const style: CSSProperties = {
             zIndex: 10 - distance,
             opacity:
-              distance === 0 ? 1 : distance === 1 ? 0.76 : 0.38,
+              distance === 0 ? 1 : distance === 1 ? 0.78 : 0.38,
             filter:
               distance === 0
                 ? 'blur(0px)'
                 : distance === 1
                   ? 'blur(1.5px)'
                   : 'blur(3px)',
-            transform: `translateX(calc(-50% + ${offset * 58}%)) scale(${
-              distance === 0 ? 1 : distance === 1 ? 0.79 : 0.66
-            })`,
+            transform: `
+              translateX(calc(-50% + ${offset * 68}%))
+              rotateY(${-offset * 24}deg)
+              scale(${distance === 0 ? 1 : distance === 1 ? 0.79 : 0.66})
+            `,
             pointerEvents: distance > 1 ? 'none' : 'auto',
           };
 
@@ -115,7 +127,9 @@ export default function CoverflowCarousel({
                   <span>{project.category}</span>
                   <h3>{project.title}</h3>
                 </div>
-                <span className="coverflow-view">VIEW PROJECT ↗</span>
+                <span className="coverflow-view">
+                  VIEW PROJECT ↗
+                </span>
               </div>
             </Link>
           );
