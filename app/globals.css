@@ -291,5 +291,250 @@ nav a:hover,.text-link:hover{color:var(--accent)}
 
 /* ACCESSIBILITY */
 @media(prefers-reduced-motion:reduce){
+
+ 
+/* =========================================
+   3D COVERFLOW PROJECT CAROUSEL
+========================================= */
+
+.coverflow {
+  width: 100%;
+  margin: 0 0 115px;
+  position: relative;
+  overflow: hidden;
+}
+
+.coverflow-stage {
+  width: 100%;
+  height: 440px;
+  position: relative;
+  perspective: 1400px;
+  overflow: hidden;
+}
+
+.coverflow-slide {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  width: min(62vw, 700px);
+  height: calc(100% - 24px);
+  display: block;
+  overflow: hidden;
+  background: #e7e3d9;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 18px 45px rgba(40, 37, 29, 0.13);
+  border-radius: 3px;
+  transform-origin: center center;
+  transition:
+    transform 900ms cubic-bezier(0.22, 0.75, 0.25, 1),
+    opacity 900ms ease,
+    filter 900ms ease,
+    box-shadow 900ms ease;
+  will-change: transform, opacity, filter;
+}
+
+.coverflow-slide.is-active {
+  box-shadow: 0 25px 65px rgba(40, 37, 29, 0.19);
+}
+
+.coverflow-slide img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  user-select: none;
+}
+
+.coverflow-image-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 48%,
+    rgba(20, 19, 16, 0.05) 60%,
+    rgba(20, 19, 16, 0.72) 100%
+  );
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+.coverflow-caption {
+  position: absolute;
+  left: 27px;
+  right: 27px;
+  bottom: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+  color: #fff;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.coverflow-slide.is-active .coverflow-caption {
+  opacity: 1;
+}
+
+.coverflow-caption > div > span {
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.coverflow-caption h3 {
+  margin: 7px 0 0;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(20px, 2.5vw, 30px);
+  font-weight: 500;
+}
+
+.coverflow-view {
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  white-space: nowrap;
+  padding-bottom: 5px;
+}
+
+.coverflow-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: min(700px, 100%);
+  margin: 23px auto 0;
+}
+
+.coverflow-count {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #77766e;
+}
+
+.coverflow-count span {
+  padding: 0 5px;
+  color: #b4ad9e;
+}
+
+.coverflow-buttons {
+  display: flex;
+  gap: 9px;
+}
+
+.coverflow-buttons button {
+  width: 38px;
+  height: 38px;
+  border: 1px solid #d5d1c7;
+  border-radius: 50%;
+  background: transparent;
+  color: #25251f;
+  font-size: 17px;
+  cursor: pointer;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.coverflow-buttons button:hover:not(:disabled) {
+  background: #282820;
+  color: #fff;
+  border-color: #282820;
+}
+
+.coverflow-buttons button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.coverflow-slide:focus-visible,
+.coverflow-buttons button:focus-visible {
+  outline: 2px solid #a58b68;
+  outline-offset: 4px;
+}
+
+.coverflow-empty {
+  min-height: 300px;
+  margin-bottom: 115px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #eee9df;
+  color: #77766e;
+}
+
+.coverflow-empty span {
+  font-size: 9px;
+  letter-spacing: 2px;
+}
+
+.coverflow-empty p {
+  font-family: 'Playfair Display', serif;
+  font-size: 19px;
+}
+
+/* MOBILE COVERFLOW */
+
+@media (max-width: 700px) {
+  .coverflow {
+    margin-bottom: 80px;
+  }
+
+  .coverflow-stage {
+    height: 290px;
+  }
+
+  .coverflow-slide {
+    width: 76vw;
+    height: calc(100% - 20px);
+    top: 10px;
+  }
+
+  .coverflow-caption {
+    left: 15px;
+    right: 15px;
+    bottom: 17px;
+  }
+
+  .coverflow-caption h3 {
+    font-size: 20px;
+  }
+
+  .coverflow-caption > div > span {
+    font-size: 8px;
+  }
+
+  .coverflow-view {
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+
+  .coverflow-controls {
+    margin-top: 17px;
+  }
+
+  .coverflow-buttons button {
+    width: 35px;
+    height: 35px;
+  }
+
+  .coverflow-empty {
+    min-height: 230px;
+    margin-bottom: 80px;
+  }
+}
+
+/* REDUCED MOTION ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+  .coverflow-slide,
+  .coverflow-caption {
+    transition: none;
+  }
+}
+
  .software-track{animation:none}
 }
