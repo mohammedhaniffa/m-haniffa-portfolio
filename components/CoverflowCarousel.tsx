@@ -82,33 +82,42 @@ export default function CoverflowCarousel({
 
           const distance = Math.abs(offset);
 
+          const scale =
+            distance === 0 ? 1 : distance === 1 ? 0.79 : 0.66;
+
+          const opacity =
+            distance === 0 ? 1 : distance === 1 ? 0.78 : 0.38;
+
+          const blur =
+            distance === 0 ? 0 : distance === 1 ? 1.5 : 3;
+
+          const transform =
+            'translateX(calc(-50% + ' +
+            offset * 68 +
+            '%)) rotateY(' +
+            -offset * 24 +
+            'deg) scale(' +
+            scale +
+            ')';
+
           const style: CSSProperties = {
             zIndex: 10 - distance,
-            opacity:
-              distance === 0 ? 1 : distance === 1 ? 0.78 : 0.38,
-            filter:
-              distance === 0
-                ? 'blur(0px)'
-                : distance === 1
-                  ? 'blur(1.5px)'
-                  : 'blur(3px)',
-            transform: `
-              translateX(calc(-50% + ${offset * 68}%))
-              rotateY(${-offset * 24}deg)
-              scale(${distance === 0 ? 1 : distance === 1 ? 0.79 : 0.66})
-            `,
+            opacity,
+            filter: 'blur(' + blur + 'px)',
+            transform,
             pointerEvents: distance > 1 ? 'none' : 'auto',
           };
 
           return (
             <Link
               key={project._id}
-              href={`/projects/${project.slug}`}
-              className={`coverflow-slide ${
-                distance === 0 ? 'is-active' : ''
-              }`}
+              href={'/projects/' + project.slug}
+              className={
+                'coverflow-slide ' +
+                (distance === 0 ? 'is-active' : '')
+              }
               style={style}
-              aria-label={`View ${project.title}`}
+              aria-label={'View ' + project.title}
               tabIndex={distance > 1 ? -1 : 0}
             >
               <img
